@@ -48,6 +48,6 @@ The wishlist page should load within 2 seconds when it contains 100 or less item
 
 Items saved to the wishlist should remain saved after the user closes and reopens the app.
 
-## Non-Functional Requirement 3 - Compability
+### Non-Functional Requirement 3 - Compability
 
 The application should work correctly on both Google Chrome and Safari.

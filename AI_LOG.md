@@ -70,6 +70,5 @@ A few things worth deciding before you build:
 
 Want me to turn this into a structured PRD document, or would you rather talk through the open questions first?
 
-### Diff / Changes
-
+Diff / Changes:
 No changes were made to my requirements after using Claude. Claude suggested additional features such as user accounts, sharing wishlists, price drop alerts, and analytics, but I decided not to add these features because they were not part of the plan.

@@ -119,6 +119,9 @@ ItemFilter: represents the two filter options in Story 6, priority and bought/no
 Decisions to be aware of
 
 No User entity. Your requirements never mention accounts, login, or multiple users, so I modeled a single wishlist. If you add accounts later, a User would own a Wishlist.
+
+###
+
 Priority has no values. The requirements say the user can "select a priority" but don't say what the options are (Low/Medium/High, 1-5, and so on). I left the enumeration empty rather than invent them, so you'll want to define them.
 Editing is limited to price and store, matching Story 3's acceptance criteria.
 The non-functional requirements (2-second load, persistence, Chrome/Safari support) affect implementation rather than the domain, so they don't add entities. Persistence just means the Wishlist and its Items are stored between sessions.
@@ -129,8 +132,26 @@ created separate Wishlist, Item, and ItemFilter classes. I chose to use one
 WISHLIST_ITEM entity because the information needed for my current
 requirements can be stored together.
 
+# Architecture Decision Record - ADR-001
 
+## AI Tool
 
+ChatGPT
+
+## Prompt
+
+I decided to use SQLite for storing the wishlist data instead
+of a JSON file. What can I possibly do?
+
+## AI Response
+
+ChatGPT suggested organizing the ADR into four sections: Context, Decision,
+Alternatives Considered, and Consequences.
+
+## Diff / Changes
+
+I created `docs/adr/ADR-001.md` using the suggested structure. I kept SQLite
+as my actual storage decision and used JSON and CSV as alternatives. 
 
 
 

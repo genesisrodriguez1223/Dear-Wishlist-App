@@ -154,5 +154,23 @@ I created `docs/adr/ADR-001.md` using the suggested structure. I kept SQLite
 as my actual storage decision and used JSON and CSV as alternatives. 
 
 
+## M5 - Walking Skeleton and CI
+
+### Prompt 1
+**Prompt:** How do I test my Dear Wishlist app?
+
+**Changes Made:**  
+- VS code used 
+- Updated `test_app.py`.
+- Used pytest to run the application test.
+- Verified that the test passed locally.
+
+### Diff / Changes 
+The M5 walking skeleton now demonstrates an end-to-end path:
+
+`HTML form → Flask/Python → SQLite → Flask/Python → HTML page`
+
+The GitHub Actions CI workflow also runs automatically and completes successfully.
+
 
 

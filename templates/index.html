@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dear Wishlist</title>
+</head>
+
+<body>
+
+    <h1>💗 Dear Wishlist 💗</h1>
+
+    <h2>Add a Wishlist Item</h2>
+
+    <!-- Sends the information entered by the user to Flask -->
+    <form action="/add" method="POST">
+
+        <label>Item Name:</label>
+        <input type="text" name="name" required>
+
+        <br><br>
+
+        <label>Price:</label>
+        <input type="number" name="price" step="0.01">
+
+        <br><br>
+
+        <label>Store:</label>
+        <input type="text" name="store">
+
+        <br><br>
+
+        <label>Priority:</label>
+        <select name="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Add Item</button>
+
+    </form>
+
+
+    <h2>My Wishlist</h2>
+
+    <!-- Displays the items that Flask gets from SQLite -->
+    {% for item in items %}
+
+        <p>
+            <strong>{{ item[1] }}</strong>
+            - ${{ item[2] }}
+            - {{ item[3] }}
+            - Priority: {{ item[4] }}
+        </p>
+
+    {% endfor %}
+
+</body>
+
+</html>

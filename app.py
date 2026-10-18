@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
-
+def valid_priority(priority):
+    return priority in ["Low", "Medium", "High"]
 
 def init_db():
     conn = sqlite3.connect("wishlist.db")
@@ -34,6 +35,9 @@ def add_item():
     price = request.form["price"]
     store = request.form["store"]
     priority = request.form["priority"]
+
+    if not valid_priority(priority):
+        return "Invalid priority", 400
 
     conn = sqlite3.connect("wishlist.db")
     conn.execute(

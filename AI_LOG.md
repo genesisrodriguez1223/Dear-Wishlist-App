@@ -174,3 +174,29 @@ The GitHub Actions CI workflow also runs automatically and completes successfull
 
 
 
+## M6 – Testing and Bug Injection: Prompt-and-Diff Log
+
+Prompt: Help me intentionally introduce a small bug that my tests can detect.
+
+Changes made:
+
+Temporarily changed the code to save "Low" priority instead of the user's selected priority.
+
+Ran the tests to check whether they detected the incorrect behavior.
+
+Restored the original code afterward.
+
+Evidence: Fault diff, failing test output, and passing test output after fixing the bug.
+
+
+Prompt: Help me understand why my invalid-priority test returned HTTP 302 instead of HTTP 400.
+
+Changes made:
+
+Added priority validation to the /add route.
+
+Corrected Python indentation.
+
+Added a test to verify that invalid priorities are rejected.
+
+Result: All 7 tests passed.

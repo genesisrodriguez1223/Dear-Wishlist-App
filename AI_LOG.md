@@ -200,3 +200,25 @@ Corrected Python indentation.
 Added a test to verify that invalid priorities are rejected.
 
 Result: All 7 tests passed.
+
+## M7 -  Documented Refactor
+AI Tool Used: ChatGPT
+Prompt 1: Identifying the Code Smell
+
+Prompt/Request: I asked ChatGPT to help me identify a code smell in my app.py file for my refactoring assignment.
+
+AI Suggestion: ChatGPT identified duplicated SQLite database connection code in several functions, including init_db(), home(), add_item(), delete_item(), and edit_item().
+
+My Decision: I accepted this suggestion because the repeated database code made my application harder to maintain.
+
+Prompt 2: Understanding the Refactoring
+
+My Prompt: "where is the part im changing ?"
+
+AI Suggestion: ChatGPT explained which sections of app.py needed to be updated and suggested using a reusable database connection helper.
+
+My Decision: I followed the explanation and added the database_connection() function.
+
+
+
+

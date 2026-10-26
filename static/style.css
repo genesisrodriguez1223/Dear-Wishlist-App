@@ -1,0 +1,207 @@
+
+/* Dear Wishlist - Pink Theme */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f6, #ffd6e7);
+    font-family: Georgia, serif;
+    color: #8b3a62;
+}
+
+/* Main Layout */
+
+.page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Header */
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header h1 {
+    color: #d63384;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 17px;
+    color: #a65a80;
+}
+
+/* Form Section */
+
+.form-section {
+    background-color: #ffffff;
+    max-width: 550px;
+    margin: 0 auto 45px;
+    padding: 30px;
+    border-radius: 25px;
+    border: 2px solid #ffc0d9;
+    box-shadow: 0 6px 20px rgba(214, 51, 132, 0.12);
+}
+
+h2 {
+    color: #d63384;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-weight: bold;
+    color: #a64d79;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #f3b6d0;
+    border-radius: 12px;
+    background-color: #fff8fb;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: #8b3a62;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #e978ab;
+    border-color: #e978ab;
+}
+
+/* Buttons */
+
+button {
+    background-color: #ff85b3;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 20px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    background-color: #e75494;
+}
+
+.add-button {
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.refresh-button {
+    display: block;
+    margin: 0 auto 25px;
+    background-color: #d96b9d;
+}
+
+/* Wishlist Cards */
+
+.wishlist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.wishlist-card {
+    background-color: white;
+    border: 2px solid #ffc0d9;
+    border-radius: 20px;
+    padding: 22px;
+    width: 280px;
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.15);
+}
+
+.wishlist-card h3 {
+    color: #d63384;
+    font-size: 21px;
+    margin-top: 0;
+    overflow-wrap: anywhere;
+}
+
+.wishlist-card p {
+    color: #8b3a62;
+    font-size: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card-actions button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.edit-button {
+    background-color: #e978ab;
+}
+
+.delete-button {
+    background-color: #cc6b89;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Empty Wishlist */
+
+.empty-message {
+    text-align: center;
+    font-style: italic;
+    color: #a65a80;
+    font-size: 17px;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #a65a80;
+    font-size: 14px;
+}
+
+/* Mobile Screens */
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .wishlist-card {
+        width: 100%;
+    }
+}

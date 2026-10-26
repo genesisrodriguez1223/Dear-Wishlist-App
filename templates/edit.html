@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Wish - Dear Wishlist</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <header class="header">
+            <h1>♡ Edit Your Wish ♡</h1>
+            <p>Make your wish exactly how you want it! 🎀</p>
+        </header>
+
+        <section class="form-section">
+
+            <h2>✏️ Edit Wishlist Item</h2>
+
+            <form action="{{ url_for('edit_item', item_id=item[0]) }}"
+                  method="POST">
+
+                <label for="name">Item Name:</label>
+                <input type="text"
+                       id="name"
+                       name="name"
+                       value="{{ item[1] }}"
+                       required>
+
+                <label for="price">Price:</label>
+                <input type="number"
+                       id="price"
+                       name="price"
+                       step="0.01"
+                       min="0"
+                       value="{{ item[2] if item[2] is not none else '' }}">
+
+                <label for="store">Store:</label>
+                <input type="text"
+                       id="store"
+                       name="store"
+                       value="{{ item[3] or '' }}">
+
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+
+                    {% for category in ['Beauty', 'Fashion',
+                                        'Electronics', 'Home',
+                                        'School', 'Other'] %}
+
+                    <option value="{{ category }}"
+                        {% if item[5] == category %}selected{% endif %}>
+                        {{ category }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority">
+
+                    {% for priority in ['High', 'Medium', 'Low'] %}
+
+                    <option value="{{ priority }}"
+                        {% if item[4] == priority %}selected{% endif %}>
+                        {{ priority }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+                <button type="submit" class="add-button">
+                    💗 Save Changes
+                </button>
+
+                <a href="{{ url_for('home') }}"
+                   class="cancel-link">
+                    Cancel and Return to Wishlist
+                </a>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</body>
+</html>

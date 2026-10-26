@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-DATABASE = os.path.join(app.root_path, "wishlist.db")
+DATABASE = "wishlist.db"
 
 CATEGORIES = [
     "Beauty", "Fashion", "Electronics",

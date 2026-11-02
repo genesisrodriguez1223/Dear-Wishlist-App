@@ -200,3 +200,20 @@ Corrected Python indentation.
 Added a test to verify that invalid priorities are rejected.
 
 Result: All 7 tests passed.
+
+
+# IAP M8 — Prompt-and-Diff Log
+  
+**Milestone:** M8 — Structured Logging and Runbook Entry
+
+## Prompt 1 — Structured Logging
+
+**Prompt:** Help me add structured logging to my existing Dear Wishlist Flask application while keeping SQLite as my database.
+
+**AI Assistance:** AI helped me create a separate Python file for structured logging using Python's built-in logging module.
+
+**Changes Made:**
+- Created `structured_logging.py`.
+- Added consistent fields for timestamp, level, event, request ID, and message.
+- Kept SQLite as the database for storing wishlist items.
+

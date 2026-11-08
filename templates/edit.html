@@ -1,98 +1,239 @@
 
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Edit Wish | Dear Wishlist ♡{% endblock %}
 
-    <title>Edit Wish - Dear Wishlist</title>
+{% block content %}
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='style.css') }}">
-</head>
+<!-- EDIT PAGE HEADER -->
+<section class="page-header">
 
-<body>
+    <div>
+        <span class="welcome-label">MAKE YOUR WISH PERFECT ♡</span>
 
-    <div class="page-container">
+        <h1>✏️ Edit My Wish</h1>
 
-        <header class="header">
-            <h1>♡ Edit Your Wish ♡</h1>
-            <p>Make your wish exactly how you want it! 🎀</p>
-        </header>
+        <p>
+            Changed your mind about something?
+            Update your wishlist item below!
+        </p>
+    </div>
 
-        <section class="form-section">
+    <a href="{{ url_for('wishlist') }}"
+       class="btn btn-secondary">
+        ← Back to My Wishlist
+    </a>
 
-            <h2>✏️ Edit Wishlist Item</h2>
+</section>
 
-            <form action="{{ url_for('edit_item', item_id=item[0]) }}"
-                  method="POST">
 
-                <label for="name">Item Name:</label>
-                <input type="text"
-                       id="name"
-                       name="name"
-                       value="{{ item[1] }}"
-                       required>
+<!-- EDIT ITEM FORM -->
+<section class="add-section">
 
-                <label for="price">Price:</label>
-                <input type="number"
-                       id="price"
-                       name="price"
-                       step="0.01"
-                       min="0"
-                       value="{{ item[2] if item[2] is not none else '' }}">
+    <div class="section-heading">
+        <h2>💌 Update Wish Details</h2>
+        <p>Edit the information for your saved item.</p>
+    </div>
 
-                <label for="store">Store:</label>
-                <input type="text"
-                       id="store"
-                       name="store"
-                       value="{{ item[3] or '' }}">
+    <div class="form-card">
 
-                <label for="category">Category:</label>
-                <select id="category" name="category">
+        <form action="{{ url_for('edit_item', item_id=item[0]) }}"
+              method="POST"
+              class="wish-form">
 
-                    {% for category in ['Beauty', 'Fashion',
-                                        'Electronics', 'Home',
-                                        'School', 'Other'] %}
+            <div class="form-grid">
 
-                    <option value="{{ category }}"
-                        {% if item[5] == category %}selected{% endif %}>
-                        {{ category }}
-                    </option>
+                <!-- ITEM NAME -->
+                <div class="form-group">
 
-                    {% endfor %}
+                    <label for="name">
+                        ♡ Item Name
+                    </label>
 
-                </select>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           value="{{ item[1] }}"
+                           placeholder="Enter item name"
+                           required>
 
-                <label for="priority">Priority:</label>
-                <select id="priority" name="priority">
+                </div>
 
-                    {% for priority in ['High', 'Medium', 'Low'] %}
 
-                    <option value="{{ priority }}"
-                        {% if item[4] == priority %}selected{% endif %}>
-                        {{ priority }}
-                    </option>
+                <!-- PRICE -->
+                <div class="form-group">
 
-                    {% endfor %}
+                    <label for="price">
+                        💰 Price ($)
+                    </label>
 
-                </select>
+                    <input type="number"
+                           id="price"
+                           name="price"
+                           min="0"
+                           step="0.01"
+                           value="{{ item[2] if item[2] is not none else '' }}"
+                           placeholder="Enter price">
 
-                <button type="submit" class="add-button">
-                    💗 Save Changes
-                </button>
+                </div>
 
-                <a href="{{ url_for('home') }}"
-                   class="cancel-link">
-                    Cancel and Return to Wishlist
+
+                <!-- STORE -->
+                <div class="form-group">
+
+                    <label for="store">
+                        🛍️ Store
+                    </label>
+
+                    <input type="text"
+                           id="store"
+                           name="store"
+                           value="{{ item[3] or '' }}"
+                           placeholder="Enter store name">
+
+                </div>
+
+
+                <!-- PRIORITY -->
+                <div class="form-group">
+
+                    <label for="priority">
+                        ⭐ Priority
+                    </label>
+
+                    <select id="priority"
+                            name="priority"
+                            required>
+
+                        {% for priority in priorities %}
+
+                        <option value="{{ priority }}"
+                                {% if item[4] == priority %}
+                                    selected
+                                {% endif %}>
+
+                            {{ priority }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+                <div class="form-group">
+
+                    <label for="category">
+                        🎀 Category
+                    </label>
+
+                    <select id="category"
+                            name="category"
+                            required>
+
+                        {% for category in categories %}
+
+                        <option value="{{ category }}"
+                                {% if item[5] == category %}
+                                    selected
+                                {% endif %}>
+
+                            {{ category }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT ITEM STATUS -->
+            <div class="edit-status-section">
+
+                <h3>♡ Current Wish Status</h3>
+
+                <div class="wish-details">
+
+                    {% if item[6] %}
+                        <span class="favorite-indicator">
+                            💗 Added to Favorites
+                        </span>
+                    {% else %}
+                        <span class="category-badge">
+                            ♡ Not Favorited
+                        </span>
+                    {% endif %}
+
+                    {% if item[7] %}
+                        <span class="purchased-badge">
+                            ✓ Purchased
+                        </span>
+                    {% else %}
+                        <span class="category-badge">
+                            🛍️ Not Purchased
+                        </span>
+                    {% endif %}
+
+                </div>
+
+                <p class="settings-description">
+                    You can change favorite and purchased status
+                    using the buttons on your wishlist cards.
+                </p>
+
+            </div>
+
+
+            <!-- FORM ACTION BUTTONS -->
+            <div class="form-actions">
+
+                <a href="{{ url_for('wishlist') }}"
+                   class="btn btn-secondary">
+                    ✕ Cancel
                 </a>
 
-            </form>
+                <button type="submit"
+                        class="btn btn-primary">
+                    ♡ Save Changes
+                </button>
 
-        </section>
+            </div>
+
+        </form>
 
     </div>
 
-</body>
-</html>
+</section>
+
+
+<!-- HELPFUL MESSAGE -->
+<section class="dashboard-section">
+
+    <div class="empty-state">
+
+        <div class="empty-icon">💗</div>
+
+        <h3>Keep your wishlist up to date!</h3>
+
+        <p>
+            You can always come back and edit your wishes
+            whenever prices, stores, or priorities change.
+        </p>
+
+        <a href="{{ url_for('wishlist') }}"
+           class="btn btn-secondary">
+            ← Return to My Wishlist
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

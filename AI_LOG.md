@@ -201,24 +201,19 @@ Added a test to verify that invalid priorities are rejected.
 
 Result: All 7 tests passed.
 
-## M7 -  Documented Refactor
-AI Tool Used: ChatGPT
-Prompt 1: Identifying the Code Smell
 
-Prompt/Request: I asked ChatGPT to help me identify a code smell in my app.py file for my refactoring assignment.
+# IAP M8 — Prompt-and-Diff Log
+  
+**Milestone:** M8 — Structured Logging and Runbook Entry
 
-AI Suggestion: ChatGPT identified duplicated SQLite database connection code in several functions, including init_db(), home(), add_item(), delete_item(), and edit_item().
+## Prompt 1 — Structured Logging
 
-My Decision: I accepted this suggestion because the repeated database code made my application harder to maintain.
+**Prompt:** Help me add structured logging to my existing Dear Wishlist Flask application while keeping SQLite as my database.
 
-Prompt 2: Understanding the Refactoring
+**AI Assistance:** AI helped me create a separate Python file for structured logging using Python's built-in logging module.
 
-My Prompt: "where is the part im changing ?"
-
-AI Suggestion: ChatGPT explained which sections of app.py needed to be updated and suggested using a reusable database connection helper.
-
-My Decision: I followed the explanation and added the database_connection() function.
-
-
-
+**Changes Made:**
+- Created `structured_logging.py`.
+- Added consistent fields for timestamp, level, event, request ID, and message.
+- Kept SQLite as the database for storing wishlist items.
 

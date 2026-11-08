@@ -1,0 +1,263 @@
+
+{% extends "base.html" %}
+
+{% block title %}Settings | Dear Wishlist ♡{% endblock %}
+
+{% block content %}
+
+<!-- SETTINGS PAGE HEADER -->
+<section class="page-header">
+
+    <div>
+        <span class="welcome-label">MAKE IT YOURS ♡</span>
+
+        <h1>⚙️ My Settings</h1>
+
+        <p>
+            Personalize your Dear Wishlist experience!
+            Choose your favorite colors and make
+            your wishlist feel like you.
+        </p>
+    </div>
+
+</section>
+
+
+<!-- APPEARANCE SETTINGS -->
+<section class="dashboard-section">
+
+    <div class="section-heading">
+        <h2>🎨 Website Appearance</h2>
+        <p>Choose the color theme that makes you happiest!</p>
+    </div>
+
+    <div class="form-card">
+
+        <h3>♡ Choose Your Theme</h3>
+
+        <p class="settings-description">
+            Select a theme below to change the colors
+            throughout your Dear Wishlist website.
+        </p>
+
+        <div class="theme-grid">
+
+            <!-- PINK THEME -->
+            <button type="button"
+                    class="theme-card"
+                    data-theme="pink"
+                    aria-pressed="false">
+
+                <div class="theme-preview pink-preview">
+                    <div class="preview-header"></div>
+                    <div class="preview-content">
+                        <div class="preview-box"></div>
+                        <div class="preview-box"></div>
+                    </div>
+                </div>
+
+                <h3>💗 Pretty Pink</h3>
+
+                <p>Sweet, soft, and full of love!</p>
+
+                <span class="theme-selected">
+                    Select Theme
+                </span>
+
+            </button>
+
+
+            <!-- LAVENDER THEME -->
+            <button type="button"
+                    class="theme-card"
+                    data-theme="lavender"
+                    aria-pressed="false">
+
+                <div class="theme-preview lavender-preview">
+                    <div class="preview-header"></div>
+                    <div class="preview-content">
+                        <div class="preview-box"></div>
+                        <div class="preview-box"></div>
+                    </div>
+                </div>
+
+                <h3>💜 Lovely Lavender</h3>
+
+                <p>Dreamy purple pastel vibes!</p>
+
+                <span class="theme-selected">
+                    Select Theme
+                </span>
+
+            </button>
+
+
+            <!-- CREAM THEME -->
+            <button type="button"
+                    class="theme-card"
+                    data-theme="cream"
+                    aria-pressed="false">
+
+                <div class="theme-preview cream-preview">
+                    <div class="preview-header"></div>
+                    <div class="preview-content">
+                        <div class="preview-box"></div>
+                        <div class="preview-box"></div>
+                    </div>
+                </div>
+
+                <h3>🤍 Cozy Cream</h3>
+
+                <p>Warm, simple, and elegant!</p>
+
+                <span class="theme-selected">
+                    Select Theme
+                </span>
+
+            </button>
+
+        </div>
+
+        <p id="themeMessage"
+           class="settings-message"
+           role="status"
+           aria-live="polite">
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- WISHLIST INFORMATION -->
+<section class="dashboard-section">
+
+    <div class="section-heading">
+        <h2>💌 About Your Wishlist</h2>
+        <p>A little information about your application.</p>
+    </div>
+
+    <div class="form-card">
+
+        <div class="settings-info">
+
+            <div class="settings-info-item">
+                <span>Application</span>
+                <strong>♡ Dear Wishlist ♡</strong>
+            </div>
+
+            <div class="settings-info-item">
+                <span>Framework</span>
+                <strong>Python Flask</strong>
+            </div>
+
+            <div class="settings-info-item">
+                <span>Database</span>
+                <strong>SQLite</strong>
+            </div>
+
+            <div class="settings-info-item">
+                <span>Features</span>
+                <strong>
+                    Wishlist, Categories, Favorites, Purchases
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SETTINGS JAVASCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const themeButtons =
+        document.querySelectorAll(".theme-card");
+
+    const themeMessage =
+        document.getElementById("themeMessage");
+
+    const allowedThemes = ["pink", "lavender", "cream"];
+
+    let currentTheme = "pink";
+
+    try {
+        const savedTheme =
+            localStorage.getItem("dearWishlistTheme");
+
+        if (allowedThemes.includes(savedTheme)) {
+            currentTheme = savedTheme;
+        }
+    } catch (error) {
+        console.warn("Theme storage is unavailable.");
+    }
+
+    function applyTheme(theme, savePreference) {
+
+        if (!allowedThemes.includes(theme)) {
+            return;
+        }
+
+        document.body.dataset.theme = theme;
+
+        themeButtons.forEach(function (button) {
+
+            const selected =
+                button.dataset.theme === theme;
+
+            button.classList.toggle("selected", selected);
+
+            button.setAttribute(
+                "aria-pressed",
+                selected ? "true" : "false"
+            );
+
+            const label =
+                button.querySelector(".theme-selected");
+
+            if (label) {
+                label.textContent =
+                    selected ? "✓ Selected" : "Select Theme";
+            }
+
+        });
+
+        if (savePreference) {
+
+            try {
+                localStorage.setItem(
+                    "dearWishlistTheme",
+                    theme
+                );
+
+                themeMessage.textContent =
+                    "♡ Your theme preference has been saved!";
+
+            } catch (error) {
+
+                themeMessage.textContent =
+                    "Theme applied, but browser storage is unavailable.";
+            }
+        }
+
+    }
+
+    themeButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            applyTheme(button.dataset.theme, true);
+
+        });
+
+    });
+
+    applyTheme(currentTheme, false);
+
+});
+</script>
+
+{% endblock %}
